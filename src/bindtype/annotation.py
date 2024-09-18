@@ -196,7 +196,7 @@ class Kinase_AllostericAnnotation(BindingTypeAnnotation):
         Returns
         -------
         str
-            Binding type
+            Binding type: 'Allosteric' or 'Unknown'
         """
 
         text = text.lower()
@@ -205,7 +205,7 @@ class Kinase_AllostericAnnotation(BindingTypeAnnotation):
             keywords = json.load(f)
         for k, v in keywords.items(): keywords[k] = [item.lower() for item in v]
 
-        if any([keyword in text for keyword in keywords]):
+        if any([keyword in text for keyword in keywords['Allosteric']]):
             return 'Allosteric'
         else:
             return 'Unknown'
